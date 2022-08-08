@@ -11,6 +11,7 @@ public class rockPaperScissors extends Game {
     private int compWins;
     private int draws;
 
+
     public void play() {
 
         choiceMap.put(1, "Rock");
@@ -49,7 +50,7 @@ public class rockPaperScissors extends Game {
             System.out.println("Draw!");
         } else if (playerWins > compWins) {
             System.out.println("Player wins!");
-        } else if (compWins > playerWins) {
+        } else { // compWins > playerWins
             System.out.println("Comp wins!");
         }
 
@@ -63,10 +64,6 @@ public class rockPaperScissors extends Game {
         compChoice = (int) Math.floor(3*Math.random()) + 1;
 
         calculateRound(playerChoice, compChoice);
-
-
-
-
     }
 
     private void calculateRound(int pChoice, int cChoice){

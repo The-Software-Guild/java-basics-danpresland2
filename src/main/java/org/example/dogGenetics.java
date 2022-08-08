@@ -25,9 +25,9 @@ public class dogGenetics extends Game{
 
         int sum = 0;
         dogBreedPrcnt.add(0);
-        for (int i=0; i<4; i++){
+        for (int i=0; i<4; i++) {
             sum += dogBreedPrcnt.get(i);
-            dogBreedPrcnt.add(rand.nextInt(0,100-sum));
+            dogBreedPrcnt.add(rand.nextInt(0, 100 - sum));
         }
         sum += dogBreedPrcnt.get(dogBreedPrcnt.size()-1);
         dogBreedPrcnt.add(100-sum);
@@ -41,18 +41,11 @@ public class dogGenetics extends Game{
 
         System.out.printf("Well then, I have this highly reliable report on %s's " +
                 "prestigious background right here.\n", dogName);
-
-
         System.out.printf("\n%s is:\n", dogName);
 
-        sum=0;
-        int prcnt;
-        String breed;
+        //print results
         for (int i=0; i<5; i++){
-            prcnt = dogBreedPrcnt.get(i);
-            breed = dogBreedComposition.get(i);
-            System.out.printf("%d\t %s\n", prcnt, breed);
-            sum += prcnt;
+            System.out.printf("%d\t %s\n", dogBreedPrcnt.get(i), dogBreedComposition.get(i));
         }
 
     }
