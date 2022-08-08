@@ -17,8 +17,8 @@ public class Main {
         System.out.println("3. Healthy Hears");
         System.out.println("4. Summative Sums");
 
-        //int choice = myScanner.nextInt();
-        int choice = 2;
+        int choice = myScanner.nextInt();
+        //int choice = 2;
 
         Game game;
         game = gameFactory(choice);
@@ -32,8 +32,8 @@ public class Main {
 
         factory.put(1, new rockPaperScissors());
         factory.put(2, new dogGenetics());
-        //factory.put(3, new rockPaperScissors());
-        //factory.put(4, new rockPaperScissors());
+        factory.put(3, new healthyHearts());
+        factory.put(4, new summativeSums());
 
         return factory.get(choice);
     }
