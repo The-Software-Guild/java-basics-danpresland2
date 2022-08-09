@@ -3,11 +3,10 @@ package org.example;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class dogGenetics extends Game{
+public class DogGenetics implements Game{
 
 
     public static ArrayList<String> dogBreeds = new ArrayList<>();
-
     static {
         dogBreeds.add("Chihuahua");
         dogBreeds.add("Australian Shepherd");
@@ -24,6 +23,9 @@ public class dogGenetics extends Game{
      */
     @Override
     public void play() {
+        System.out.println("************");
+        System.out.println("Dog Genetics");
+
 
         String dogName;
 

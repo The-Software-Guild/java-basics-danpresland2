@@ -1,12 +1,15 @@
 package org.example;
 
-public class summativeSums extends Game {
+public class SummativeSums implements Game {
 
     /**
      *
      */
     @Override
     public void play() {
+        System.out.println("**************");
+        System.out.println("Summative Sums");
+
 
         int[] a1 = { 1, 90, -33, -55, 67, -16, 28, -55, 15 };
         int[] a2 = { 999, -60, -77, 14, 160, 301 };

@@ -2,10 +2,15 @@ package org.example;
 
 import java.util.HashMap;
 
-public class rockPaperScissors extends Game {
+public class RockPaperScissors implements Game {
 
 
-    private HashMap<Integer, String> choiceMap = new HashMap<>();//convert 1,2,3 to rock, paper, scissors
+    private static HashMap<Integer, String> choiceMap = new HashMap<>();//convert 1,2,3 to rock, paper, scissors
+    static {
+        choiceMap.put(1, "Rock");
+        choiceMap.put(2, "Paper");
+        choiceMap.put(3, "Scissors");
+    }
 
     private int playerWins;
     private int compWins;
@@ -18,28 +23,29 @@ public class rockPaperScissors extends Game {
     @Override
     public void play() {
 
-        choiceMap.put(1, "Rock");
-        choiceMap.put(2, "Paper");
-        choiceMap.put(3, "Scissors");
-
         int choice;
         do {
             playerWins = 0;
             compWins = 0;
             draws = 0;
+
             playRPS();
+
             System.out.print("Again? 1/0 :: ");
             choice = myScanner.nextInt();
             System.out.println();
+
         } while (choice == 1);
 
     }
 
 
+    /**
+     *
+     */
     private void playRPS() {
-
-        System.out.println("********************");
-        System.out.println("Rock Paper Scissors.");
+        System.out.println("*******************");
+        System.out.println("Rock Paper Scissors");
 
         int numRounds = enterNumRounds();
 
@@ -62,6 +68,9 @@ public class rockPaperScissors extends Game {
         System.out.println("\n\n");
     }
 
+    /**
+     * play a round of rps
+     */
     private void playRound() {
         //1rock, 2paper, 3scissors
         int playerChoice = enterChoice();
@@ -73,12 +82,18 @@ public class rockPaperScissors extends Game {
         int winner = calculateRound(playerChoice, compChoice);
 
         //output result
-        if (winner == -1) {
-            System.out.println("Draw!");
-        } else if (winner == 0) {
-            System.out.printf("%s beats %s. Player wins!\n", pChoiceText, cChoiceText);
-        } else { //winner == 1
-            System.out.printf("%s beats %s. Comp wins!\n", cChoiceText, pChoiceText);
+        switch (winner) {
+            case -1: //draw
+                draws++;
+                System.out.println("Draw!");
+
+            case 0: //player wins
+                playerWins++;
+                System.out.printf("%s beats %s. Player wins!\n", pChoiceText, cChoiceText);
+
+            case 1: //computer wins
+                compWins++;
+                System.out.printf("%s beats %s. Computer wins!\n", cChoiceText, pChoiceText);
         }
     }
 
@@ -86,23 +101,23 @@ public class rockPaperScissors extends Game {
      * calculate winner
      * @param pChoice player choice
      * @param cChoice computer choice
-     * @return int winner
+     * @return int winner (-1=draw, 0=player, 1=computer)
      */
     private int calculateRound(int pChoice, int cChoice){
-        short winner = -1;//-1=draw, 0=player, 1=comp
+        int winner = -1;//-1=draw, 0=player, 1=computer
 
 
         if (pChoice == cChoice){
-            draws++;winner=-1;
+            winner=-1;
+
         } else if (pChoice == 1) {
-            if (cChoice == 2) {compWins++;winner=1;}
-            else if (cChoice == 3) {playerWins++;winner=0;}
+            winner = (cChoice == 2) ? 1 : 0;
+
         } else if (pChoice == 2) {
-            if (cChoice == 1) {playerWins++;winner=0;}
-            else if (cChoice == 3) {compWins++;winner=1;}
+            winner = (cChoice == 1) ? 0 : 1;
+
         } else if (pChoice == 3) {
-            if (cChoice == 1) {compWins++;winner=1;}
-            else if (cChoice == 2) {playerWins++;winner=0;}
+            winner = (cChoice == 1) ? 1 : 0;
         }
 
         return winner;

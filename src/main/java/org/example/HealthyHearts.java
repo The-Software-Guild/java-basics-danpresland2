@@ -1,6 +1,6 @@
 package org.example;
 
-public class healthyHearts extends Game {
+public class HealthyHearts implements Game {
 
 
     /**
@@ -8,6 +8,8 @@ public class healthyHearts extends Game {
      */
     @Override
     public void play() {
+        System.out.println("**************");
+        System.out.println("Healthy Hearts");
 
         int age;
         int hrMax;

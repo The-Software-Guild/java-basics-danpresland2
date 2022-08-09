@@ -6,19 +6,20 @@ import java.util.Scanner;
 
 public class Main {
 
-    private Scanner myScanner;
+    private Scanner myScanner = new Scanner(System.in);
 
     private void playGame() {
-        myScanner = new Scanner(System.in);
 
-        System.out.println("Choose a Game:");
-        System.out.println("1. Rock Paper Scissors");
-        System.out.println("2. Dog Genetics");
-        System.out.println("3. Healthy Hears");
-        System.out.println("4. Summative Sums");
+        System.out.println("""
+                Choose a game:
+                1. Rock Paper Scissors
+                2. Dog Genetics
+                3. Healthy Hearts
+                4. Summative Sums
+                """);
+
         System.out.print("Choice :: ");
         int choice = myScanner.nextInt();
-        System.out.println();
 
 
         Game game;
@@ -36,10 +37,10 @@ public class Main {
     private Game gameFactory(int choice) {
         HashMap<Integer, Game> factory = new HashMap<>();
 
-        factory.put(1, new rockPaperScissors());
-        factory.put(2, new dogGenetics());
-        factory.put(3, new healthyHearts());
-        factory.put(4, new summativeSums());
+        factory.put(1, new RockPaperScissors());
+        factory.put(2, new DogGenetics());
+        factory.put(3, new HealthyHearts());
+        factory.put(4, new SummativeSums());
 
         return factory.get(choice);
     }
