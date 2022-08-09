@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 interface Game {
 
-    public Scanner myScanner = new Scanner(System.in);
+    Scanner myScanner = new Scanner(System.in);
 
-    public void play();
+    void play();
 
 }

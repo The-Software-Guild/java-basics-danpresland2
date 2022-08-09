@@ -5,9 +5,45 @@ import java.util.Random;
 
 public class DogGenetics implements Game{
 
+    private Random rand = new Random();
 
-    public static ArrayList<String> dogBreeds = new ArrayList<>();
-    static {
+    public ArrayList<String> dogBreeds = new ArrayList<>();
+
+
+    /**
+     *
+     */
+    @Override
+    public void play() {
+        populateDogBreeds();
+
+        System.out.println("************");
+        System.out.println("Dog Genetics");
+
+        System.out.print("Dog name :: ");
+        String dogName = myScanner.nextLine();
+
+
+        //get 5 breeds & percents
+        ArrayList<String> dogBreedComposition;
+        ArrayList<Integer> dogBreedPrcnt;
+
+        dogBreedPrcnt = getRandomPercents();
+        dogBreedComposition = getRandomComposition();
+
+        //print results
+        System.out.printf("\n%s is:\n", dogName);
+
+        for (int i=0; i<5; i++){
+            System.out.printf("%d%%\t %s\n", dogBreedPrcnt.get(i), dogBreedComposition.get(i));
+        }
+
+    }
+
+    /**
+     *
+     */
+    private void populateDogBreeds() {
         dogBreeds.add("Chihuahua");
         dogBreeds.add("Australian Shepherd");
         dogBreeds.add("Border Terrier");
@@ -19,26 +55,29 @@ public class DogGenetics implements Game{
     }
 
     /**
-     *
+     * get 5 random breeds
+     * @return
      */
-    @Override
-    public void play() {
-        System.out.println("************");
-        System.out.println("Dog Genetics");
-
-
-        String dogName;
-
-        System.out.print("Dog name :: ");
-        dogName = myScanner.nextLine();
-
-
+    private ArrayList<String> getRandomComposition() {
         ArrayList<String> dogBreedComposition = new ArrayList<>();
-        ArrayList<Integer> dogBreedPrcnt = new ArrayList<>();
-        Random rand = new Random();
 
-        //get 5 random prcnts
+        for (int i=0; i<5; i++) {
+            String tmpBreed = dogBreeds.get(rand.nextInt(dogBreeds.size()));
+            dogBreedComposition.add(tmpBreed);
+            dogBreeds.remove(tmpBreed);
+        }
+
+        return dogBreedComposition;
+    }
+
+    /**
+     * get 5 random percents
+     * @return
+     */
+    private ArrayList<Integer> getRandomPercents() {
+        ArrayList<Integer> dogBreedPrcnt = new ArrayList<>();
         int sum = 0;
+
         dogBreedPrcnt.add(0);
         for (int i=0; i<4; i++) {
             sum += dogBreedPrcnt.get(i);
@@ -48,22 +87,7 @@ public class DogGenetics implements Game{
         dogBreedPrcnt.add(100-sum);//add value to make values sum to 100
         dogBreedPrcnt.remove(0);
 
-        //get 5 random breeds
-        for (int i=0; i<5; i++){
-            String tmpBreed = dogBreeds.get(rand.nextInt(dogBreeds.size()));
-            dogBreedComposition.add(tmpBreed);
-            dogBreeds.remove(tmpBreed);
-        }
-
-        System.out.printf("Well then, I have this highly reliable report on %s's " +
-                "prestigious background right here.\n", dogName);
-        System.out.printf("\n%s is:\n", dogName);
-
-        //print results
-        for (int i=0; i<5; i++){
-            System.out.printf("%d\t %s\n", dogBreedPrcnt.get(i), dogBreedComposition.get(i));
-        }
-
+        return dogBreedPrcnt;
     }
 
 }

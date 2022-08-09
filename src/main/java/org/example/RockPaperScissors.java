@@ -82,18 +82,17 @@ public class RockPaperScissors implements Game {
         int winner = calculateRound(playerChoice, compChoice);
 
         //output result
-        switch (winner) {
-            case -1: //draw
-                draws++;
-                System.out.println("Draw!");
+        if (winner == -1) {
+            draws++;
+            System.out.println("Draw!");
 
-            case 0: //player wins
-                playerWins++;
-                System.out.printf("%s beats %s. Player wins!\n", pChoiceText, cChoiceText);
+        } else if (winner == 0) {
+            playerWins++;
+            System.out.printf("%s beats %s. Player wins!\n", pChoiceText, cChoiceText);
 
-            case 1: //computer wins
-                compWins++;
-                System.out.printf("%s beats %s. Computer wins!\n", cChoiceText, pChoiceText);
+        } else { //winner == 1
+            compWins++;
+            System.out.printf("%s beats %s. Comp wins!\n", cChoiceText, pChoiceText);
         }
     }
 
@@ -105,7 +104,6 @@ public class RockPaperScissors implements Game {
      */
     private int calculateRound(int pChoice, int cChoice){
         int winner = -1;//-1=draw, 0=player, 1=computer
-
 
         if (pChoice == cChoice){
             winner=-1;
