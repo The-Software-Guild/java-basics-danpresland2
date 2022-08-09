@@ -2,6 +2,10 @@ package org.example;
 
 public class summativeSums extends Game {
 
+    /**
+     *
+     */
+    @Override
     public void play() {
 
         int[] a1 = { 1, 90, -33, -55, 67, -16, 28, -55, 15 };
@@ -18,7 +22,12 @@ public class summativeSums extends Game {
         System.out.println("#3 : " + s3);
     }
 
-    private int calcSum(int[] arr) {
+    /**
+     * calculate sum of integer array
+     * @param arr
+     * @return int sum
+     */
+    private static int calcSum(int[] arr) {
         int sum = 0;
 
         for (int e : arr){

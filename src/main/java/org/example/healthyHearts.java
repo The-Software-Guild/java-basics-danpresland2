@@ -3,6 +3,10 @@ package org.example;
 public class healthyHearts extends Game {
 
 
+    /**
+     *
+     */
+    @Override
     public void play() {
 
         int age;

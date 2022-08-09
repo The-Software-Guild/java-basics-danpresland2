@@ -6,10 +6,24 @@ import java.util.Random;
 public class dogGenetics extends Game{
 
 
-    private ArrayList<String> dogBreeds = new ArrayList<>();
+    public static ArrayList<String> dogBreeds = new ArrayList<>();
 
+    static {
+        dogBreeds.add("Chihuahua");
+        dogBreeds.add("Australian Shepherd");
+        dogBreeds.add("Border Terrier");
+        dogBreeds.add("St. Bernard");
+        dogBreeds.add("Common Cur");
+        dogBreeds.add("Golden Retriever");
+        dogBreeds.add("Newfoundland");
+        dogBreeds.add("Maltese");
+    }
+
+    /**
+     *
+     */
+    @Override
     public void play() {
-        initDogBreeds();
 
         String dogName;
 
@@ -21,6 +35,7 @@ public class dogGenetics extends Game{
         ArrayList<Integer> dogBreedPrcnt = new ArrayList<>();
         Random rand = new Random();
 
+        //get 5 random prcnts
         int sum = 0;
         dogBreedPrcnt.add(0);
         for (int i=0; i<4; i++) {
@@ -47,17 +62,6 @@ public class dogGenetics extends Game{
             System.out.printf("%d\t %s\n", dogBreedPrcnt.get(i), dogBreedComposition.get(i));
         }
 
-    }
-
-    private void initDogBreeds() {
-        dogBreeds.add("Chihuahua");
-        dogBreeds.add("Australian Shepherd");
-        dogBreeds.add("Border Terrier");
-        dogBreeds.add("St. Bernard");
-        dogBreeds.add("Common Cur");
-        dogBreeds.add("Golden Retriever");
-        dogBreeds.add("Newfoundland");
-        dogBreeds.add("Maltese");
     }
 
 }

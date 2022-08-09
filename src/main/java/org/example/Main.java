@@ -42,7 +42,6 @@ public class Main {
         factory.put(4, new summativeSums());
 
         return factory.get(choice);
-//        return factory.containsKey(choice) ? factory.get(choice) : null;
     }
 
 

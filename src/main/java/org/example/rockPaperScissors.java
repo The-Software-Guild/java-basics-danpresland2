@@ -12,6 +12,10 @@ public class rockPaperScissors extends Game {
     private int draws;
 
 
+    /**
+     *
+     */
+    @Override
     public void play() {
 
         choiceMap.put(1, "Rock");
@@ -78,6 +82,12 @@ public class rockPaperScissors extends Game {
         }
     }
 
+    /**
+     * calculate winner
+     * @param pChoice player choice
+     * @param cChoice computer choice
+     * @return int winner
+     */
     private int calculateRound(int pChoice, int cChoice){
         short winner = -1;//-1=draw, 0=player, 1=comp
 
@@ -98,6 +108,10 @@ public class rockPaperScissors extends Game {
         return winner;
     }
 
+    /**
+     * user enter choice (1rock, 2paper, 3scissors)
+     * @return player choice
+     */
     private int enterChoice() {
         int playerEntry;
 
@@ -109,6 +123,10 @@ public class rockPaperScissors extends Game {
         return playerEntry;
     }
 
+    /**
+     * user enter num of rounds to play
+     * @return number of rounds
+     */
     private int enterNumRounds() {
         int numRounds;
 
