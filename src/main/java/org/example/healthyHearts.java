@@ -14,8 +14,8 @@ public class healthyHearts extends Game {
         age = myScanner.nextInt();
 
         hrMax = 220-age;
-        hrUpper = (int) (hrMax * 0.85);
-        hrLower = (int) (hrMax * 0.5);
+        hrUpper = (int) Math.ceil(hrMax * 0.85);
+        hrLower = (int) Math.floor(hrMax * 0.5);
 
         System.out.printf("Target HR zone is %d - %d bpm\n", hrLower, hrUpper);
 

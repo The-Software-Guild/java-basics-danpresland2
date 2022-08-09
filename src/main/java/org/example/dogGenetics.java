@@ -15,12 +15,10 @@ public class dogGenetics extends Game{
 
         System.out.print("Dog name :: ");
         dogName = myScanner.nextLine();
-        System.out.println();
 
 
         ArrayList<String> dogBreedComposition = new ArrayList<>();
         ArrayList<Integer> dogBreedPrcnt = new ArrayList<>();
-
         Random rand = new Random();
 
         int sum = 0;
@@ -29,10 +27,11 @@ public class dogGenetics extends Game{
             sum += dogBreedPrcnt.get(i);
             dogBreedPrcnt.add(rand.nextInt(0, 100 - sum));
         }
-        sum += dogBreedPrcnt.get(dogBreedPrcnt.size()-1);
-        dogBreedPrcnt.add(100-sum);
+        sum += dogBreedPrcnt.get(dogBreedPrcnt.size()-1);//sum of prcnt so far
+        dogBreedPrcnt.add(100-sum);//add value to make values sum to 100
         dogBreedPrcnt.remove(0);
 
+        //get 5 random breeds
         for (int i=0; i<5; i++){
             String tmpBreed = dogBreeds.get(rand.nextInt(dogBreeds.size()));
             dogBreedComposition.add(tmpBreed);

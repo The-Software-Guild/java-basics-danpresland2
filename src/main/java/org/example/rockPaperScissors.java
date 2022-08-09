@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class rockPaperScissors extends Game {
 
 
-    private HashMap<Integer, String> choiceMap = new HashMap<>();
+    private HashMap<Integer, String> choiceMap = new HashMap<>();//convert 1,2,3 to rock, paper, scissors
 
     private int playerWins;
     private int compWins;
@@ -24,8 +24,9 @@ public class rockPaperScissors extends Game {
             compWins = 0;
             draws = 0;
             playRPS();
-            System.out.println("Again? y/n -> 1/0 :: ");
+            System.out.print("Again? 1/0 :: ");
             choice = myScanner.nextInt();
+            System.out.println();
         } while (choice == 1);
 
     }
@@ -33,18 +34,18 @@ public class rockPaperScissors extends Game {
 
     private void playRPS() {
 
+        System.out.println("********************");
         System.out.println("Rock Paper Scissors.");
 
         int numRounds = enterNumRounds();
 
         for (int i=0; i<numRounds; i++){
-            System.out.println("\n\nRound " + i);
+            System.out.println("\n\nRound " + (i+1));
             playRound();
         }
 
         System.out.println("\n\nPlayer - Computer");
         System.out.printf("     %s - %s\n",playerWins, compWins);
-
 
         if (playerWins == compWins) {
             System.out.println("Draw!");
@@ -60,16 +61,26 @@ public class rockPaperScissors extends Game {
     private void playRound() {
         //1rock, 2paper, 3scissors
         int playerChoice = enterChoice();
-        int compChoice;
-        compChoice = (int) Math.floor(3*Math.random()) + 1;
+        int compChoice = (int) Math.floor(3*Math.random()) + 1;
 
-        calculateRound(playerChoice, compChoice);
+        String pChoiceText = choiceMap.get(playerChoice);
+        String cChoiceText = choiceMap.get(playerChoice);
+
+        int winner = calculateRound(playerChoice, compChoice);
+
+        //output result
+        if (winner == -1) {
+            System.out.println("Draw!");
+        } else if (winner == 0) {
+            System.out.printf("%s beats %s. Player wins!\n", pChoiceText, cChoiceText);
+        } else { //winner == 1
+            System.out.printf("%s beats %s. Comp wins!\n", cChoiceText, pChoiceText);
+        }
     }
 
-    private void calculateRound(int pChoice, int cChoice){
-        short winner = 0;//-1=draw, 0=player, 1=comp
-        String pChoiceText = choiceMap.get(pChoice);
-        String cChoiceText = choiceMap.get(cChoice);
+    private int calculateRound(int pChoice, int cChoice){
+        short winner = -1;//-1=draw, 0=player, 1=comp
+
 
         if (pChoice == cChoice){
             draws++;winner=-1;
@@ -84,20 +95,16 @@ public class rockPaperScissors extends Game {
             else if (cChoice == 2) {playerWins++;winner=0;}
         }
 
-        if (winner == -1) {
-            System.out.println("Draw!");
-        } else if (winner == 0) {
-            System.out.printf("%s beats %s. Player wins!\n", pChoiceText, cChoiceText);
-        } else if (winner == 1) {
-            System.out.printf("%s beats %s. Comp wins!\n", cChoiceText, pChoiceText);
-        }
-
+        return winner;
     }
 
     private int enterChoice() {
         int playerEntry;
-        System.out.print("1 Rock, 2 Paper, 3 Scissors. Enter :: ");
-        playerEntry = myScanner.nextInt();
+
+        do {
+            System.out.print("1 Rock, 2 Paper, 3 Scissors. Enter :: ");
+            playerEntry = myScanner.nextInt();
+        } while (playerEntry < 1 || playerEntry > 3);
 
         return playerEntry;
     }
