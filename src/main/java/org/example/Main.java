@@ -1,10 +1,19 @@
 package org.example;
 
-import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.function.Supplier;
+import static java.util.Map.entry;
 
 
 public class Main {
+
+    private static final Map<Integer, Supplier<Game>> gameFactoryMap = Map.ofEntries(
+            entry(1, RockPaperScissors::new),
+            entry(2, DogGenetics::new),
+            entry(3, HealthyHearts::new),
+            entry(4, SummativeSums::new)
+    );
 
     private Scanner myScanner = new Scanner(System.in);
 
@@ -23,7 +32,7 @@ public class Main {
 
 
         Game game;
-        game = gameFactory(choice);
+        game = createGame(choice);
 
         if (game == null){
             System.out.println("Invalid choice.");
@@ -34,15 +43,9 @@ public class Main {
 
     }
 
-    private Game gameFactory(int choice) {
-        HashMap<Integer, Game> factory = new HashMap<>();
-
-        factory.put(1, new RockPaperScissors());
-        factory.put(2, new DogGenetics());
-        factory.put(3, new HealthyHearts());
-        factory.put(4, new SummativeSums());
-
-        return factory.get(choice);
+    private static Game createGame(int choice) {
+        Supplier<Game> factory = gameFactoryMap.get(choice);
+        return factory == null ? null : factory.get();
     }
 
 
